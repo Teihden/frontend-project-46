@@ -12,5 +12,6 @@ module.exports = {
   },
   rules: {
     'import/extensions': ['error', 'ignorePackages'],
+    'no-underscore-dangle': [2, { allow: ['__filename', '__dirname'] }],
   },
 };

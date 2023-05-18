@@ -4,11 +4,11 @@ import path from 'node:path';
 // import process from 'node:process';
 
 export default (filePath1, filePath2, format) => {
-  const fileExtension = (filePath) => filePath.split('.').at(-1);
+  const fileExtension = (filePath) => path.extname(filePath);
   const absolutePath = (filePath) => path.resolve(filePath);
   const readFile = (filePath) => fs.readFileSync(absolutePath(filePath), 'utf-8').trim();
   const parseFile = (filePath) => {
-    if (fileExtension(filePath) === 'json') {
+    if (fileExtension(filePath) === '.json') {
       return JSON.parse(readFile(filePath));
     }
   };

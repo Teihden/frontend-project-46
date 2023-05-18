@@ -1,5 +1,8 @@
 # Project "Difference calculator"
 [![Actions Status](https://github.com/Teihden/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/Teihden/frontend-project-46/actions)
+[![CI](https://github.com/Teihden/frontend-project-46/workflows/CI/badge.svg)](https://github.com/Teihden/frontend-project-46/actions/workflows/CI.yml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/5ab8768fe7cee2f58d42/maintainability)](https://codeclimate.com/github/Teihden/frontend-project-46/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/5ab8768fe7cee2f58d42/test_coverage)](https://codeclimate.com/github/Teihden/frontend-project-46/test_coverage)
 
 ## About
 
@@ -14,7 +17,7 @@ Examples of use:
 
 ## Usage
 
-You should have Node.js installed before proceeding. Only test JS against v19 and on macOS.
+You should have Node.js installed before proceeding. Only test JS against v18 and on macOS.
 
 ```shell
 # Clone the repo
@@ -36,6 +39,15 @@ make publish
 
 # Runs Eslint against source code for quality
 make lint
+
+# Runs Jest
+make test
+
+# Runs Jest in code coverage mode
+make test-coverage
+
+# Runs Jest in watch mode
+make watch
 ```
 
 <h2 id="#default-comparison">Comparison of flat files (JSON)</h2>
