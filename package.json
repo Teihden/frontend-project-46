@@ -2,9 +2,9 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "program that determines the difference between two data structures",
-  "main": "gendiff.js",
+  "main": "src/diff.js",
   "bin": {
-    "gendiff": "bin/gendiff.js"
+    "gendiff": "bin/genDiff.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,9 +21,12 @@
   "homepage": "https://github.com/Teihden/frontend-project-46#readme",
   "type": "module",
   "devDependencies": {
-    "commander": "^10.0.1",
     "eslint": "^8.40.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5"
+  },
+  "dependencies": {
+    "commander": "^10.0.1",
+    "lodash": "^4.17.21"
   }
 }

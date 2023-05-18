@@ -9,6 +9,9 @@ Features of the utility:
 - Supports various input formats: yaml, json;
 - Report generation as plain text, stylish and json.
 
+Examples of use:
+1. <a href="#default-comparison">"Comparison of flat files (JSON)"</a>
+
 ## Usage
 
 You should have Node.js installed before proceeding. Only test JS against v19 and on macOS.
@@ -34,3 +37,8 @@ make publish
 # Runs Eslint against source code for quality
 make lint
 ```
+
+<h2 id="#default-comparison">Comparison of flat files (JSON)</h2>
+A simple comparison of 2 files with JSON extension without specifying the output data format.
+
+[![asciicast](https://asciinema.org/a/7sU9EunQioHYImc29l4pHZV3a.svg)](https://asciinema.org/a/7sU9EunQioHYImc29l4pHZV3a)
