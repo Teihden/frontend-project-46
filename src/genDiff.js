@@ -3,10 +3,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 // import process from 'node:process';
 
+// eslint-disable-next-line no-unused-vars
 export default (filePath1, filePath2, format) => {
   const fileExtension = (filePath) => path.extname(filePath);
   const absolutePath = (filePath) => path.resolve(filePath);
   const readFile = (filePath) => fs.readFileSync(absolutePath(filePath), 'utf-8').trim();
+
+  // eslint-disable-next-line consistent-return
   const parseFile = (filePath) => {
     if (fileExtension(filePath) === '.json') {
       return JSON.parse(readFile(filePath));

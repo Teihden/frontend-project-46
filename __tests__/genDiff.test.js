@@ -1,6 +1,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import {expect, beforeAll, test} from '@jest/globals';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { expect, beforeAll, test } from '@jest/globals';
 import genDiff from '../src/genDiff.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
