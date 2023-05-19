@@ -13,8 +13,9 @@ Features of the utility:
 - Report generation as plain text, stylish and json.
 
 Examples of use:
-1. <a href="#default-comparison-json">"Comparison of flat files (JSON)"</a>
-2. <a href="#default-comparison-yaml">"Comparison of flat files (YAML)"</a>
+1. <a href="#default-comparison-flat-json">"Comparison of flat files (JSON)"</a>
+2. <a href="#default-comparison-flat-yaml">"Comparison of flat files (YAML)"</a>
+3. <a href="#stylish-comparison-nested">"Comparison of nested files with stylish format"</a>
 
 ## Usage
 
@@ -51,12 +52,17 @@ make test-coverage
 make watch
 ```
 
-<h2 id="#default-comparison-json">Comparison of flat files (JSON)</h2>
+<h2 id="default-comparison-flat-json">Comparison of flat files (JSON)</h2>
 A simple comparison of 2 files with JSON extension without specifying the output data format.
 
 [![asciicast](https://asciinema.org/a/7sU9EunQioHYImc29l4pHZV3a.svg)](https://asciinema.org/a/7sU9EunQioHYImc29l4pHZV3a)
 
-<h2 id="#default-comparison-yaml">Comparison of flat files (YAML)</h2>
+<h2 id="default-comparison-flat-yaml">Comparison of flat files (YAML)</h2>
 A simple comparison of 2 files with YAML extension without specifying the output data format.
 
 [![asciicast](https://asciinema.org/a/GTH1BIYqlh7SxvtZMpt1GefAl.svg)](https://asciinema.org/a/GTH1BIYqlh7SxvtZMpt1GefAl)
+
+<h2 id="stylish-comparison-nested">Comparison of nested files with stylish format</h2>
+Comparison of 2 files with JSON, YAML extension with 'stylish' output data format.
+
+[![asciicast](https://asciinema.org/a/77YK08vIftMVdLtiv0pizz6jm.svg)](https://asciinema.org/a/77YK08vIftMVdLtiv0pizz6jm)
