@@ -1,23 +1,10 @@
 import _ from 'lodash';
-import fs from 'node:fs';
-import path from 'node:path';
-// import process from 'node:process';
+import parse from './parsers.js';
 
 // eslint-disable-next-line no-unused-vars
 export default (filePath1, filePath2, format) => {
-  const fileExtension = (filePath) => path.extname(filePath);
-  const absolutePath = (filePath) => path.resolve(filePath);
-  const readFile = (filePath) => fs.readFileSync(absolutePath(filePath), 'utf-8').trim();
-
-  // eslint-disable-next-line consistent-return
-  const parseFile = (filePath) => {
-    if (fileExtension(filePath) === '.json') {
-      return JSON.parse(readFile(filePath));
-    }
-  };
-
-  const obj1 = parseFile(filePath1);
-  const obj2 = parseFile(filePath2);
+  const obj1 = parse(filePath1);
+  const obj2 = parse(filePath2);
 
   const keys1 = Object.keys(obj1);
   const keys2 = Object.keys(obj2);
