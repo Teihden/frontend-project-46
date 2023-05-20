@@ -4,7 +4,7 @@
   "description": "program that determines the difference between two data structures",
   "main": "index.js",
   "bin": {
-    "gendiff": "bin/genDiff.js"
+    "gendiff": "bin/gendiff.js"
   },
   "scripts": {
     "test": "jest --colors"
