@@ -8,7 +8,7 @@ import {
   describe,
 } from '@jest/globals';
 import genDiff from '../src/genDiff.js';
-import { expectedFlat, expectedNested } from '../__fixtures__/expected.js';
+import { expectedFlatStylish, expectedNestedStylish, expectedNestedPlain } from '../__fixtures__/expected.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
@@ -24,11 +24,11 @@ describe('Comparison of files (JSON)', () => {
     });
 
     test('Without output format', () => {
-      expect(genDiff(filePath1, filePath2)).toStrictEqual(expectedFlat);
+      expect(genDiff(filePath1, filePath2)).toStrictEqual(expectedFlatStylish);
     });
 
     test('With stylish format', () => {
-      expect(genDiff(filePath1, filePath2, 'stylish')).toStrictEqual(expectedFlat);
+      expect(genDiff(filePath1, filePath2, 'stylish')).toStrictEqual(expectedFlatStylish);
     });
   });
 
@@ -39,11 +39,15 @@ describe('Comparison of files (JSON)', () => {
     });
 
     test('Without output format', () => {
-      expect(genDiff(filePath1, filePath2)).toStrictEqual(expectedNested);
+      expect(genDiff(filePath1, filePath2)).toStrictEqual(expectedNestedStylish);
     });
 
     test('With stylish format', () => {
-      expect(genDiff(filePath1, filePath2, 'stylish')).toStrictEqual(expectedNested);
+      expect(genDiff(filePath1, filePath2, 'stylish')).toStrictEqual(expectedNestedStylish);
+    });
+
+    test('With plain format', () => {
+      expect(genDiff(filePath1, filePath2, 'plain')).toStrictEqual(expectedNestedPlain);
     });
   });
 });
@@ -56,11 +60,11 @@ describe('Comparison of files (YAML)', () => {
     });
 
     test('Without output format', () => {
-      expect(genDiff(filePath1, filePath2)).toStrictEqual(expectedFlat);
+      expect(genDiff(filePath1, filePath2)).toStrictEqual(expectedFlatStylish);
     });
 
     test('With stylish format', () => {
-      expect(genDiff(filePath1, filePath2, 'stylish')).toStrictEqual(expectedFlat);
+      expect(genDiff(filePath1, filePath2, 'stylish')).toStrictEqual(expectedFlatStylish);
     });
   });
 
@@ -71,11 +75,15 @@ describe('Comparison of files (YAML)', () => {
     });
 
     test('Without output format', () => {
-      expect(genDiff(filePath1, filePath2)).toStrictEqual(expectedNested);
+      expect(genDiff(filePath1, filePath2)).toStrictEqual(expectedNestedStylish);
     });
 
     test('With stylish format', () => {
-      expect(genDiff(filePath1, filePath2, 'stylish')).toStrictEqual(expectedNested);
+      expect(genDiff(filePath1, filePath2, 'stylish')).toStrictEqual(expectedNestedStylish);
+    });
+
+    test('With plain format', () => {
+      expect(genDiff(filePath1, filePath2, 'plain')).toStrictEqual(expectedNestedPlain);
     });
   });
 });

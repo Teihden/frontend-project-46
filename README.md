@@ -16,6 +16,7 @@ Examples of use:
 1. <a href="#default-comparison-flat-json">"Comparison of flat files (JSON)"</a>
 2. <a href="#default-comparison-flat-yaml">"Comparison of flat files (YAML)"</a>
 3. <a href="#stylish-comparison-nested">"Comparison of nested files with stylish format"</a>
+4. <a href="#stylish-comparison-nested">"Comparison of nested files with plain format"</a>
 
 ## Usage
 
@@ -66,3 +67,8 @@ A simple comparison of 2 files with YAML extension without specifying the output
 Comparison of 2 files with JSON, YAML extension with 'stylish' output data format.
 
 [![asciicast](https://asciinema.org/a/77YK08vIftMVdLtiv0pizz6jm.svg)](https://asciinema.org/a/77YK08vIftMVdLtiv0pizz6jm)
+
+<h2 id="stylish-comparison-nested">Comparison of nested files with plain format</h2>
+Comparison of 2 files with JSON, YAML extension with 'plain' output data format.
+
+[![asciicast](https://asciinema.org/a/RI6HcCE1qC43HZxWpajCerjJU.svg)](https://asciinema.org/a/RI6HcCE1qC43HZxWpajCerjJU)
