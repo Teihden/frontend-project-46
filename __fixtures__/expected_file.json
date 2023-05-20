@@ -1,0 +1,116 @@
+[
+  {
+    "name": "common",
+    "meta": "shared",
+    "children": [
+      {
+        "name": "follow",
+        "meta": "added",
+        "value": false
+      },
+      {
+        "name": "setting1",
+        "meta": "shared",
+        "value": "Value 1"
+      },
+      {
+        "name": "setting2",
+        "meta": "removed",
+        "value": 200
+      },
+      {
+        "name": "setting3",
+        "meta": "updated",
+        "removedValue": true,
+        "addedValue": null
+      },
+      {
+        "name": "setting4",
+        "meta": "added",
+        "value": "blah blah"
+      },
+      {
+        "name": "setting5",
+        "meta": "added",
+        "value": {
+          "key5": "value5"
+        }
+      },
+      {
+        "name": "setting6",
+        "meta": "shared",
+        "children": [
+          {
+            "name": "doge",
+            "meta": "shared",
+            "children": [
+              {
+                "name": "wow",
+                "meta": "updated",
+                "removedValue": "",
+                "addedValue": "so much"
+              }
+            ]
+          },
+          {
+            "name": "key",
+            "meta": "shared",
+            "value": "value"
+          },
+          {
+            "name": "ops",
+            "meta": "added",
+            "value": "vops"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "group1",
+    "meta": "shared",
+    "children": [
+      {
+        "name": "baz",
+        "meta": "updated",
+        "removedValue": "bas",
+        "addedValue": "bars"
+      },
+      {
+        "name": "foo",
+        "meta": "shared",
+        "value": "bar"
+      },
+      {
+        "name": "nest",
+        "meta": "updated",
+        "removedValue": {
+          "key": "value"
+        },
+        "addedValue": "str"
+      }
+    ]
+  },
+  {
+    "name": "group2",
+    "meta": "removed",
+    "value": {
+      "abc": 12345,
+      "deep": {
+        "id": 45
+      }
+    }
+  },
+  {
+    "name": "group3",
+    "meta": "added",
+    "value": {
+      "deep": {
+        "id": {
+          "number": 45
+        }
+      },
+      "fee": 100500
+    }
+  }
+]

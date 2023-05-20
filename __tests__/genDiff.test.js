@@ -1,3 +1,4 @@
+import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -12,9 +13,11 @@ import { expectedFlatStylish, expectedNestedStylish, expectedNestedPlain } from 
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
 let filePath1 = '';
 let filePath2 = '';
+let expectedJSON = '';
 
 describe('Comparison of files (JSON)', () => {
   describe('Flat files', () => {
@@ -36,6 +39,7 @@ describe('Comparison of files (JSON)', () => {
     beforeAll(() => {
       filePath1 = getFixturePath('file1_nested.json');
       filePath2 = getFixturePath('file2_nested.json');
+      expectedJSON = readFile('expected_file.json');
     });
 
     test('Without output format', () => {
@@ -48,6 +52,10 @@ describe('Comparison of files (JSON)', () => {
 
     test('With plain format', () => {
       expect(genDiff(filePath1, filePath2, 'plain')).toStrictEqual(expectedNestedPlain);
+    });
+
+    test('With json format', () => {
+      expect(genDiff(filePath1, filePath2, 'json')).toStrictEqual(expectedJSON);
     });
   });
 });
@@ -72,6 +80,7 @@ describe('Comparison of files (YAML)', () => {
     beforeAll(() => {
       filePath1 = getFixturePath('file1_nested.yaml');
       filePath2 = getFixturePath('file2_nested.yaml');
+      expectedJSON = readFile('expected_file.json');
     });
 
     test('Without output format', () => {
@@ -84,6 +93,10 @@ describe('Comparison of files (YAML)', () => {
 
     test('With plain format', () => {
       expect(genDiff(filePath1, filePath2, 'plain')).toStrictEqual(expectedNestedPlain);
+    });
+
+    test('With json format', () => {
+      expect(genDiff(filePath1, filePath2, 'json')).toStrictEqual(expectedJSON);
     });
   });
 });

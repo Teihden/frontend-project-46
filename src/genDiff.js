@@ -11,16 +11,13 @@ export default (filePath1, filePath2, formatName = 'stylish') => {
     const diffLevel = keys.map((key) => {
       const obj = {};
       obj.name = key;
-      if (!Object.hasOwn(objToCompare1, key)) {
-        obj.meta = 'added';
-        obj.value = objToCompare2[key];
+
+      if (!Object.hasOwn(objToCompare1, key) || !Object.hasOwn(objToCompare2, key)) {
+        obj.meta = Object.hasOwn(objToCompare1, key) ? 'removed' : 'added';
+        obj.value = Object.hasOwn(objToCompare1, key) ? objToCompare1[key] : objToCompare2[key];
         return obj;
       }
-      if (!Object.hasOwn(objToCompare2, key)) {
-        obj.meta = 'removed';
-        obj.value = objToCompare1[key];
-        return obj;
-      }
+
       if (!_.isEqual(objToCompare1[key], objToCompare2[key])) {
         if (_.isObject(objToCompare1[key]) && _.isObject(objToCompare2[key])) {
           obj.meta = 'shared';

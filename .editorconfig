@@ -26,3 +26,6 @@ indent_style = tab
 
 [__fixtures__/expected.js]
 trim_trailing_whitespace = false
+
+[__fixtures__/expected_file.json]
+insert_final_newline = false
