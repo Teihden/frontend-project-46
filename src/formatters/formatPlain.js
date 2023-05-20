@@ -16,14 +16,16 @@ export default (tree) => {
       if (Object.hasOwn(el, 'children')) {
         return iter(el.children, `${ancestor}${el.name}.`);
       }
-      if (el.meta === 'added') {
-        return `Property '${ancestor}${el.name}' was added with value: ${fotmatValue(el.value)}`;
-      }
-      if (el.meta === 'removed') {
-        return `Property '${ancestor}${el.name}' was removed`;
-      }
-      if (el.meta === 'updated') {
-        return `Property '${ancestor}${el.name}' was updated. From ${fotmatValue(el.removedValue)} to ${fotmatValue(el.addedValue)}`;
+      if (el.meta !== 'shared') {
+        const makeText = (element) => {
+          const obj = {
+            added: `was added with value: ${fotmatValue(element.value)}`,
+            removed: 'was removed',
+            updated: `was updated. From ${fotmatValue(element.removedValue)} to ${fotmatValue(element.addedValue)}`,
+          };
+          return obj[element.meta];
+        };
+        return `Property '${ancestor}${el.name}' ${makeText(el)}`;
       }
       return [];
     }).join('\n');
