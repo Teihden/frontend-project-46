@@ -9,30 +9,35 @@ export default (filePath1, filePath2, formatName = 'stylish') => {
     const keys = _.sortBy(_.union(keys1, keys2));
 
     const diffLevel = keys.map((key) => {
-      const obj = {};
-      obj.name = key;
-
       if (!Object.hasOwn(objToCompare1, key) || !Object.hasOwn(objToCompare2, key)) {
-        obj.meta = Object.hasOwn(objToCompare1, key) ? 'removed' : 'added';
-        obj.value = Object.hasOwn(objToCompare1, key) ? objToCompare1[key] : objToCompare2[key];
-        return obj;
+        return {
+          name: key,
+          meta: Object.hasOwn(objToCompare1, key) ? 'removed' : 'added',
+          value: Object.hasOwn(objToCompare1, key) ? objToCompare1[key] : objToCompare2[key],
+        };
       }
 
       if (!_.isEqual(objToCompare1[key], objToCompare2[key])) {
         if (_.isPlainObject(objToCompare1[key]) && _.isPlainObject(objToCompare2[key])) {
-          obj.meta = 'shared';
-          obj.children = buildDiffTree(objToCompare1[key], objToCompare2[key]);
-        } else {
-          obj.meta = 'updated';
-          obj.removedValue = objToCompare1[key];
-          obj.addedValue = objToCompare2[key];
+          return {
+            name: key,
+            meta: 'shared',
+            children: buildDiffTree(objToCompare1[key], objToCompare2[key]),
+          };
         }
-        return obj;
+        return {
+          name: key,
+          meta: 'updated',
+          removedValue: objToCompare1[key],
+          addedValue: objToCompare2[key],
+        };
       }
 
-      obj.meta = 'shared';
-      obj.value = objToCompare1[key];
-      return obj;
+      return {
+        name: key,
+        meta: 'shared',
+        value: objToCompare1[key],
+      };
     });
 
     return diffLevel;
