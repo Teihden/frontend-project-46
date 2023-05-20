@@ -4,99 +4,78 @@ import { fileURLToPath } from 'node:url';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
   expect,
-  beforeAll,
   test,
   describe,
 } from '@jest/globals';
 import genDiff from '../src/genDiff.js';
-import { expectedFlatStylish, expectedNestedStylish, expectedNestedPlain } from '../__fixtures__/expected.js';
+import { expectedStylish, expectedPlain } from '../__fixtures__/expected.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
-let filePath1 = '';
-let filePath2 = '';
-let expectedJSON = '';
+const filePathJSON1 = getFixturePath('file1.json');
+const filePathJSON2 = getFixturePath('file2.json');
+const filePathYAML1 = getFixturePath('file1.yaml');
+const filePathYAML2 = getFixturePath('file2.yaml');
+const filePathYML1 = getFixturePath('file1.yml');
+const filePathYML2 = getFixturePath('file2.yml');
+const fileExpectedJSON = readFile('expected_file.json');
 
 describe('Comparison of files (JSON)', () => {
-  describe('Flat files', () => {
-    beforeAll(() => {
-      filePath1 = getFixturePath('file1_flat.json');
-      filePath2 = getFixturePath('file2_flat.json');
-    });
-
-    test('Without output format', () => {
-      expect(genDiff(filePath1, filePath2)).toStrictEqual(expectedFlatStylish);
-    });
-
-    test('With stylish format', () => {
-      expect(genDiff(filePath1, filePath2, 'stylish')).toStrictEqual(expectedFlatStylish);
-    });
-  });
-
   describe('Nested files', () => {
-    beforeAll(() => {
-      filePath1 = getFixturePath('file1_nested.json');
-      filePath2 = getFixturePath('file2_nested.json');
-      expectedJSON = readFile('expected_file.json');
-    });
-
     test('Without output format', () => {
-      expect(genDiff(filePath1, filePath2)).toStrictEqual(expectedNestedStylish);
+      expect(genDiff(filePathJSON1, filePathJSON2)).toStrictEqual(expectedStylish);
     });
 
     test('With stylish format', () => {
-      expect(genDiff(filePath1, filePath2, 'stylish')).toStrictEqual(expectedNestedStylish);
+      expect(genDiff(filePathJSON1, filePathJSON2, 'stylish')).toStrictEqual(expectedStylish);
     });
 
     test('With plain format', () => {
-      expect(genDiff(filePath1, filePath2, 'plain')).toStrictEqual(expectedNestedPlain);
+      expect(genDiff(filePathJSON1, filePathJSON2, 'plain')).toStrictEqual(expectedPlain);
     });
 
     test('With json format', () => {
-      expect(genDiff(filePath1, filePath2, 'json')).toStrictEqual(expectedJSON);
+      expect(genDiff(filePathJSON1, filePathJSON2, 'json')).toStrictEqual(fileExpectedJSON);
     });
   });
 });
 
 describe('Comparison of files (YAML)', () => {
-  describe('Flat files', () => {
-    beforeAll(() => {
-      filePath1 = getFixturePath('file1_flat.yaml');
-      filePath2 = getFixturePath('file2_flat.yaml');
-    });
-
+  describe('Extension YML', () => {
     test('Without output format', () => {
-      expect(genDiff(filePath1, filePath2)).toStrictEqual(expectedFlatStylish);
+      expect(genDiff(filePathYML1, filePathYML2)).toStrictEqual(expectedStylish);
     });
 
     test('With stylish format', () => {
-      expect(genDiff(filePath1, filePath2, 'stylish')).toStrictEqual(expectedFlatStylish);
-    });
-  });
-
-  describe('Nested files', () => {
-    beforeAll(() => {
-      filePath1 = getFixturePath('file1_nested.yaml');
-      filePath2 = getFixturePath('file2_nested.yaml');
-      expectedJSON = readFile('expected_file.json');
-    });
-
-    test('Without output format', () => {
-      expect(genDiff(filePath1, filePath2)).toStrictEqual(expectedNestedStylish);
-    });
-
-    test('With stylish format', () => {
-      expect(genDiff(filePath1, filePath2, 'stylish')).toStrictEqual(expectedNestedStylish);
+      expect(genDiff(filePathYML1, filePathYML2, 'stylish')).toStrictEqual(expectedStylish);
     });
 
     test('With plain format', () => {
-      expect(genDiff(filePath1, filePath2, 'plain')).toStrictEqual(expectedNestedPlain);
+      expect(genDiff(filePathYML1, filePathYML2, 'plain')).toStrictEqual(expectedPlain);
     });
 
     test('With json format', () => {
-      expect(genDiff(filePath1, filePath2, 'json')).toStrictEqual(expectedJSON);
+      expect(genDiff(filePathYML1, filePathYML2, 'json')).toStrictEqual(fileExpectedJSON);
+    });
+  });
+
+  describe('Extension YAML', () => {
+    test('Without output format', () => {
+      expect(genDiff(filePathYAML1, filePathYAML2)).toStrictEqual(expectedStylish);
+    });
+
+    test('With stylish format', () => {
+      expect(genDiff(filePathYAML1, filePathYAML2, 'stylish')).toStrictEqual(expectedStylish);
+    });
+
+    test('With plain format', () => {
+      expect(genDiff(filePathYAML1, filePathYAML2, 'plain')).toStrictEqual(expectedPlain);
+    });
+
+    test('With json format', () => {
+      expect(genDiff(filePathYAML1, filePathYAML2, 'json')).toStrictEqual(fileExpectedJSON);
     });
   });
 });

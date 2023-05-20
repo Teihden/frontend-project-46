@@ -8,12 +8,18 @@ export default (filePath) => {
   const absolutePath = path.resolve(filePath);
   const file = fs.readFileSync(absolutePath, 'utf-8').trim();
 
-  let parse;
-  if (fileExtension === '' || fileExtension === '.json') {
-    parse = JSON.parse;
-  } else if (fileExtension === '.yml' || fileExtension === '.yaml') {
-    parse = yaml.load;
-  }
+  const chooseParser = (extension) => {
+    const obj = {
+      '': JSON.parse,
+      '.json': JSON.parse,
+      '.yml': yaml.load,
+      '.yaml': yaml.load,
+    };
+
+    return obj[extension];
+  };
+
+  const parse = chooseParser(fileExtension);
 
   return parse(file);
 };

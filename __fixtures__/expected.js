@@ -1,4 +1,4 @@
-const expectedNestedStylish = `{
+const expectedStylish = `{
     common: {
       + follow: false
         setting1: Value 1
@@ -43,16 +43,7 @@ const expectedNestedStylish = `{
     }
 }`;
 
-const expectedFlatStylish = `{
-  - follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: true
-}`;
-
-const expectedNestedPlain = `Property 'common.follow' was added with value: false
+const expectedPlain = `Property 'common.follow' was added with value: false
 Property 'common.setting2' was removed
 Property 'common.setting3' was updated. From true to null
 Property 'common.setting4' was added with value: 'blah blah'
@@ -64,4 +55,4 @@ Property 'group1.nest' was updated. From [complex value] to 'str'
 Property 'group2' was removed
 Property 'group3' was added with value: [complex value]`;
 
-export { expectedNestedStylish, expectedFlatStylish, expectedNestedPlain };
+export { expectedStylish, expectedPlain };

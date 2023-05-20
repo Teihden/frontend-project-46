@@ -6,13 +6,13 @@ export default (tree) => {
       if (_.isString(value)) {
         return `'${value}'`;
       }
-      if (_.isArray(value) || _.isObject(value)) {
+      if (_.isObject(value)) {
         return '[complex value]';
       }
       return value;
     };
 
-    const lines = nodes.flatMap((el) => {
+    return nodes.flatMap((el) => {
       if (Object.hasOwn(el, 'children')) {
         return iter(el.children, `${ancestor}${el.name}.`);
       }
@@ -26,10 +26,7 @@ export default (tree) => {
         return `Property '${ancestor}${el.name}' was updated. From ${fotmatValue(el.removedValue)} to ${fotmatValue(el.addedValue)}`;
       }
       return [];
-    });
-
-    const string = lines.join('\n');
-    return string;
+    }).join('\n');
   };
 
   return iter(tree, '');

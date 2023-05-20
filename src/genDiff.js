@@ -19,7 +19,7 @@ export default (filePath1, filePath2, formatName = 'stylish') => {
       }
 
       if (!_.isEqual(objToCompare1[key], objToCompare2[key])) {
-        if (_.isObject(objToCompare1[key]) && _.isObject(objToCompare2[key])) {
+        if (_.isPlainObject(objToCompare1[key]) && _.isPlainObject(objToCompare2[key])) {
           obj.meta = 'shared';
           obj.children = buildDiffTree(objToCompare1[key], objToCompare2[key]);
         } else {
