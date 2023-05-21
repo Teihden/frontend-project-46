@@ -8,8 +8,11 @@ const defineCharacter = (meta) => {
     case 'removed': {
       return '- ';
     }
-    default: {
+    case 'shared': {
       return '  ';
+    }
+    default: {
+      throw new Error(`Unknown meta type: '${meta}'!`);
     }
   }
 };
