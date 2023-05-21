@@ -25,15 +25,15 @@ export default (tree) => {
     const bracketIndent = ' '.repeat(indentSize(depth) - spacesCount);
 
     if (_.isPlainObject(currentValue)) {
-      const linesValue = Object
+      const lines = Object
         .entries(currentValue)
         .map(([key, value]) => `${defaultIndent}${key}: ${iter(value, depth + 1)}`);
 
-      return formatLines(linesValue, bracketIndent);
+      return formatLines(lines, bracketIndent);
     }
 
     if (_.isArray(currentValue)) {
-      const linesNode = currentValue.flatMap((el) => {
+      const nodes = currentValue.flatMap((node) => {
         const makeLine = (name, meta, value) => `${formattedIndent}${defineCharacter(meta)}${name}: ${iter(value, depth + 1)}`;
         const {
           name,
@@ -42,12 +42,13 @@ export default (tree) => {
           value,
           removedValue,
           addedValue,
-        } = el;
+        } = node;
 
-        if (Object.hasOwn(el, 'children')) {
+        if (Object.hasOwn(node, 'children')) {
           return makeLine(name, meta, children);
         }
-        if (el.meta === 'updated') {
+
+        if (node.meta === 'updated') {
           return [
             makeLine(name, 'removed', removedValue),
             makeLine(name, 'added', addedValue),
@@ -56,7 +57,7 @@ export default (tree) => {
         return makeLine(name, meta, value);
       });
 
-      return formatLines(linesNode, bracketIndent);
+      return formatLines(nodes, bracketIndent);
     }
 
     return `${currentValue}`;
